@@ -1,0 +1,48 @@
+Please insert the card
+Step 1: Verification of card
+          if(card matches with bank database)
+              then go to step2
+          else
+              display "card is invalid, Please try again"
+
+Step 2: Verification of pin number
+        after card verification, display "enter a pin"
+        if (Pin is valid)
+            Display the language
+        else
+            display "entered Pin is invalid, Please try again"
+
+Step 3: choose the language
+        after pin verified, display the language options
+        -> Tamil
+        -> Hindi
+        -> Kannada
+        -> Telugu
+        Move to step4
+Step 4: Choose the options
+        -> Withdraw
+            display "enter amount to withdraw"
+            if (amount > withdraw)
+                display "withdrawal is successful"
+            else
+                display "insufficient amount"
+        -> Check balance
+            display "balance details"
+        -> Change Pin
+                display "enter current PIN"
+                if (current Pin is valid)
+                    display " enter new PIN"
+                    change current PIN
+                else
+                    display "incorrect current PIN, please try again"
+        -> Cash Deposit
+                display "enter the amount to deposit"
+                if (amount > 0)
+                    increase bank balance
+                else
+                    display "invalid amount, enter valid number of amount"
+Step 5: After step4 Exit the process
+        display "Thank you for using our services"
+
+
+
