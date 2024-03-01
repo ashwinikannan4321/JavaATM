@@ -1,48 +1,54 @@
+import java.util.Scanner;
+
 public class ATM {
+    private static Scanner scanner = new Scanner(System.in);
+    private static boolean isCardValid = false;
+    private static boolean isPinValid = false;
+    private static int currentPin = 1234;
+    private static double bankBalance = 1000;
+
+
+
     public static void main(String[] args) {
-        verifyCard();
+        insertCard();
+        if (isCardValid) {
+            verifyPin();
+            if (isPinValid) {
+                chooseLanguage();
+                chooseOptions();
+            }
+        }
+        exit();
     }
 }
 
 
-public boolean verifyCard(String cardNumber){
-    if(cardNumber.length()==16){
-        return true;
-        System.out.println("Card is valid");
-
-    }
-    System.out.println("card is invalid");
-    return false;
-    verifyPin();
+private static void insertCard() {
+    System.out.println("Please insert the card");
+    isCardValid = true;
 }
 
-public String verifyPin(int pinNumber){
-    System.out.println("enter PIN Number");
-    String pin = Integer.toString(pinNumber);
-    if(pin.length()==4){
-        return true;
-        chooseLanguage();
+
+public static void verifyPin(){
+    System.out.println("Verification of pin number");
+    System.out.print("Enter your PIN: ");
+    int enteredPin = scanner.nextInt();
+
+    if (enteredPin == currentPin) {
+        isPinValid = true;
+        System.out.println("PIN verification successful");
+    } else {
+        System.out.println("Entered PIN is invalid. Please try again.");
     }
 }
 
-public int chooseLanguage(int languageChoice){
-    switch (languageChoice){
-        case 1:
-            System.out.println("Tamil");
-            break;
-        case 2:
-            System.out.println("Hindi");
-            break;
-        case 3:
-            System.out.println("Kannada");
-            break;
-        case 4:
-            System.out.println("Telugu");
-            break;
-        default:
-            System.out.println("invalid option,please choose from options");
-    }
-    chooseOptions();
+
+public static int chooseLanguage(){
+    System.out.println("Choose the language:");
+    System.out.println("1. Tamil");
+    System.out.println("2. Hindi");
+    System.out.println("3. Kannada");
+    System.out.println("4. Telugu");
 }
 
 public static int chooseOptions(int option) {
@@ -69,23 +75,25 @@ public static int chooseOptions(int option) {
             System.out.println("Invalid option. Please try again.");
     }
 
-    private static void withdraw(double amount, double bankBalance) {
+    private static void withdraw() {
         System.out.println("Enter amount to withdraw: ");
+        double amount = scanner.nextDouble();
 
         if (amount > 0 && amount <= bankBalance) {
             bankBalance -= amount;
-            System.out.println("Withdrawal is successful.);
+            System.out.println("Withdrawal is successful");
         } else {
             System.out.println("Insufficient funds or invalid amount.");
         }
     }
 
-    private static void checkBalance(double bankBalance) {
+    private static double checkBalance(double bankBalance) {
         System.out.println("Balance details: $" + bankBalance);
     }
 
-    private static void changePin(int enteredCurrentPin, int newPin, int currentPin) {
+    private static int changePin() {
         System.out.println("Enter current PIN: ");
+        int enteredCurrentPin = scanner.nextInt();
 
         if (enteredCurrentPin == currentPin) {
             System.out.println("Enter new PIN: ");
@@ -96,19 +104,20 @@ public static int chooseOptions(int option) {
         }
     }
 
-    private static void cashDeposit(double amount) {
+    private static double cashDeposit() {
         System.out.println("Enter the amount to deposit: ");
+        double amount = scanner.nextDouble();
 
         if (amount > 0) {
             bankBalance += amount;
-            System.out.println("Deposit successful);
+            System.out.println("Deposit successful");
         }
         else
-            System.out.println("Invalid amount. Please enter a positive value.");
+            System.out.println("Invalid amount. Please enter a positive value");
     }
 
     private static void exit() {
-        System.out.println("Thank you for using our services.");
+        System.out.println("Thank you for using our services");
     }
 
 
